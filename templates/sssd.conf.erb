@@ -1,0 +1,26 @@
+[sssd]
+domains = <%= domainname %>
+config_file_version = 2
+services = nss, pam
+
+[nss]
+filter_groups = <%= filter_groups %>
+filter_users = <%= filter_users %>
+
+[pam]
+
+[domain/<%= domainname %>]
+id_provider = ldap
+ldap_uri = <%= ldap_uri %>
+ldap_search_base = <%= ldap_search_base %>
+
+auth_provider = krb5
+krb5_realm = <%= krb5_realm %>
+krb5_server = <%= krb5_server %>
+krb5_kdcip = <%= krb5_kdcip %>
+krb5_kpasswd = <%= krb5_kpasswd %>
+
+chpass_provider = krb5
+
+cache_credentials = True
+lookup_family_order = ipv4_only

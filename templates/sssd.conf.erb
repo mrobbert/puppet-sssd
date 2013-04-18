@@ -1,24 +1,33 @@
 [sssd]
-domains = <%= domainname %>
 config_file_version = 2
+reconnection_retries = 3
+domains = <%= scope.lookupvar('sssd::domainname') %>
+sbus_timeout = 30
 services = nss, pam
 
 [nss]
-filter_groups = <%= filter_groups %>
-filter_users = <%= filter_users %>
+filter_groups = <%= scope.lookupvar('sssd::filter_groups') %>
+filter_users = <%= scope.lookupvar('sssd::filter_users') %>
+reconnection_retries = 3
 
 [pam]
+reconnection_retries = 3
 
-[domain/<%= domainname %>]
+[domain/<%= scope.lookupvar('sssd::domainname') %>]
 id_provider = ldap
-ldap_uri = <%= ldap_uri %>
-ldap_search_base = <%= ldap_search_base %>
+ldap_uri = <%= scope.lookupvar('sssd::ldap_uri') %>
+ldap_search_base = <%= scope.lookupvar('sssd::ldap_search_base') %>
+ldap_user_search_base = <%= scope.lookupvar('sssd::ldap_user_search_base') %>
+ldap_group_search_base = <%= scope.lookupvar('sssd::ldap_group_search_base') %>
+ldap_tls_cacertdir = <%= scope.lookupvar('sssd::ldap_tls_cacertdir') %>
+ldap_tls_reqcert = <%= scope.lookupvar('sssd::ldap_tls_reqcert') %>
 
 auth_provider = krb5
-krb5_realm = <%= krb5_realm %>
-krb5_server = <%= krb5_server %>
-krb5_kdcip = <%= krb5_kdcip %>
-krb5_kpasswd = <%= krb5_kpasswd %>
+krb5_validate = <%= scope.lookupvar('sssd::krb5_validate') %>
+krb5_realm = <%= scope.lookupvar('sssd::krb5_realm') %>
+krb5_server = <%= scope.lookupvar('sssd::krb5_server') %>
+krb5_kdcip = <%= scope.lookupvar('sssd::krb5_kdcip') %>
+krb5_kpasswd = <%= scope.lookupvar('sssd::krb5_kpasswd') %>
 
 chpass_provider = krb5
 

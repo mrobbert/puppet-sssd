@@ -5,7 +5,7 @@ class sssd::params {
     /RedHat/: {
       $package_name = 'sssd'
       $service_name = 'sssd'
-      if ($::lsbmajdisrelease == 5) {
+      if ($::lsbmajdistrelease == 5) {
         $mkhomedir_name = 'oddjob'
       }
       else {

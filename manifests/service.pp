@@ -26,7 +26,7 @@ class sssd::service {
     }
   } else {
     exec { 'rm_cache':
-      command     => 'rm -f /var/lib/sss/db/*',
+      command     => '/bin/rm -f /var/lib/sss/db/*',
       refreshonly => true,
       subscribe   => Service['sssd'],
     }

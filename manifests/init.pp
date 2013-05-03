@@ -9,7 +9,7 @@ class sssd (
   $ldap_search_base = '',
   $ldap_user_search_base = '',
   $ldap_group_search_base = '',
-  $ldap_tls_cacertdir = '',
+  $ldap_tls_cacert = '',
   $ldap_tls_reqcert = '',
   $krb5_realm = '',
   $krb5_server = '',

@@ -19,7 +19,7 @@ ldap_uri = <%= scope.lookupvar('sssd::ldap_uri') %>
 ldap_search_base = <%= scope.lookupvar('sssd::ldap_search_base') %>
 ldap_user_search_base = <%= scope.lookupvar('sssd::ldap_user_search_base') %>
 ldap_group_search_base = <%= scope.lookupvar('sssd::ldap_group_search_base') %>
-ldap_tls_cacertdir = <%= scope.lookupvar('sssd::ldap_tls_cacertdir') %>
+ldap_tls_cacert = <%= scope.lookupvar('sssd::ldap_tls_cacert') %>
 ldap_tls_reqcert = <%= scope.lookupvar('sssd::ldap_tls_reqcert') %>
 
 auth_provider = krb5

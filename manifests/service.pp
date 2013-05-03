@@ -18,15 +18,18 @@ class sssd::service {
       require     => Class['sssd::install'],
     }
   }
-  exec { 'sssd_group_cache':
-    command     => '/usr/sbin/sss_cache -G',
-    refreshonly => true,
-    subscribe   => Service['sssd'],
-  }
-  exec { 'sssd_user_cache':
-    command     => '/usr/sbin/sss_cache -U',
-    refreshonly => true,
-    subscribe   => Service['sssd'],
+  if ($has_sss_cache == true) {
+    exec { 'sss_cache':
+      command     => '/usr/sbin/sss_cache -UGNSA',
+      refreshonly => true,
+      subscribe   => Service['sssd'],
+    }
+  } else {
+    exec { 'rm_cache':
+      command     => 'rm -f /var/lib/sss/db/*',
+      refreshonly => true,
+      subscribe   => Service['sssd'],
+    }
   }
 }
 
